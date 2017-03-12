@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -42,19 +42,18 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.signup);
         emailtext = (EditText) findViewById(R.id.emailaddress);
         passwordtext = (EditText) findViewById(R.id.password);
-        login = (TextView) findViewById(R.id.login);
+        login=(TextView)findViewById(R.id.login);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registerUser();
-
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
     }
