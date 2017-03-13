@@ -1,6 +1,8 @@
 package com.example.user.firebsetest;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class loginActivity extends AppCompatActivity  {
     private Button buttonsignin;
@@ -16,15 +24,24 @@ public class loginActivity extends AppCompatActivity  {
     private EditText passwordtext;
     private TextView signup;
 
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            //profile activity here
+        }
         buttonsignin = (Button) findViewById(R.id.buttonsignin);
         emailaddresst = (EditText) findViewById(R.id.emailaddress);
         passwordtext = (EditText) findViewById(R.id.password);
         signup = (TextView) findViewById(R.id.signup);
+
 
         buttonsignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,11 +53,10 @@ public class loginActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 finish();
-              //startActivity(new Intent(MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
             }
         });
     }
-
 
     private void userLogin() {
         String email = emailaddresst.getText().toString().trim();
@@ -56,16 +72,21 @@ public class loginActivity extends AppCompatActivity  {
             Toast.makeText(this, "請輸入密碼", Toast.LENGTH_SHORT).show();
             return;
         }
+        progressDialog.setMessage("註冊用戶中...");
+        progressDialog.show();
 
- /*@Override
-    public void onClick(View view) {
-        if (view= buttonsignin) {
-            userLogin();
-        }
-        if (view = signup) {
-            finish();
-            startActivities(new Intent(this.MainActivity.class));
-        }*/
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
+                if (task.isSuccessful()) {
+                }
+            }
+        });
 
+  /*  @Override
+    public void onClick(View v) {
+
+    }*/
     }
 }
