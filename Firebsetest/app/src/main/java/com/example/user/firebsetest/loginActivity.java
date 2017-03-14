@@ -36,6 +36,8 @@ public class loginActivity extends AppCompatActivity  {
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
             //profile activity here
+            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+            finish();
         }
         buttonsignin = (Button) findViewById(R.id.buttonsignin);
         emailaddresst = (EditText) findViewById(R.id.emailaddress);
@@ -52,8 +54,8 @@ public class loginActivity extends AppCompatActivity  {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(loginActivity.this, MainActivity.class));
                 finish();
-                startActivity(new Intent(this, MainActivity.class));
             }
         });
     }
@@ -80,6 +82,8 @@ public class loginActivity extends AppCompatActivity  {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
+                    startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                    finish();
                 }
             }
         });
