@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Bundle;
@@ -22,15 +23,15 @@ import com.google.firebase.auth.AuthResult;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
 
-    private Button button;
-    private EditText emailtext;
-    private EditText passwordtext;
-    private TextView login;
+        private Button button;
+        private EditText emailtext;
+        private EditText passwordtext;
+        private TextView login;
 
-    private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth;
+        private ProgressDialog progressDialog;
+        private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         progressDialog = new ProgressDialog(this);
-
         button = (Button) findViewById(R.id.signup);
         emailtext = (EditText) findViewById(R.id.emailaddress);
         passwordtext = (EditText) findViewById(R.id.password);
@@ -61,8 +61,13 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                //Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this,loginActivity.class));
+                //MainActivity.this.finish();
+           /*     Intent intent =new Intent();
+                intent.setClass(MainActivity.this,loginActivity.class);
+                startActivity(intent);
+                MainActivity.this.finish();*/
 
             }
         });
@@ -85,18 +90,19 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("註冊用戶中...");
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
-                        if (task.isSuccessful()) {
-                                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                                finish();
-                            }
-                            //Toast.makeText(MainActivity.this, "註冊成功!", Toast.LENGTH_SHORT).show();
-                        else {
-                            Toast.makeText(MainActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
-                        }
+                        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                                            finish();
+                                        }
+                                        //Toast.makeText(MainActivity.this, "註冊成功!", Toast.LENGTH_SHORT).show();
+                                        else {
+                                            Toast.makeText(MainActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
+                                        }
+                                        progressDialog.dismiss();
                     }
                 });
     }

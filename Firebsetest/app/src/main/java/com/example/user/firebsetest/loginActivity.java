@@ -22,7 +22,7 @@ public class loginActivity extends AppCompatActivity  {
     private Button buttonsignin;
     private EditText emailaddresst;
     private EditText passwordtext;
-    private TextView signup;
+    private TextView login;
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -37,13 +37,12 @@ public class loginActivity extends AppCompatActivity  {
         if (firebaseAuth.getCurrentUser() != null) {
             //profile activity here
             startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-            finish();
+            loginActivity.this.finish();
         }
         buttonsignin = (Button) findViewById(R.id.buttonsignin);
         emailaddresst = (EditText) findViewById(R.id.emailaddress);
         passwordtext = (EditText) findViewById(R.id.password);
-        signup = (TextView) findViewById(R.id.signup);
-
+        login = (TextView) findViewById(R.id.login);
 
         buttonsignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +50,12 @@ public class loginActivity extends AppCompatActivity  {
                 userLogin();
             }
         });
-        signup.setOnClickListener(new View.OnClickListener() {
+
+        login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(loginActivity.this, MainActivity.class));
-                finish();
+                loginActivity.this.finish();
             }
         });
     }
@@ -65,25 +65,23 @@ public class loginActivity extends AppCompatActivity  {
         String password = passwordtext.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            //email是空的
             Toast.makeText(this, "請輸入信箱", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            //密碼是空的
-            Toast.makeText(this, "請輸入密碼", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        progressDialog.setMessage("註冊用戶中...");
-        progressDialog.show();
+                Toast.makeText(this, "請輸入密碼", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            progressDialog.setMessage("登入中...");
+            progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                progressDialog.dismiss();
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    progressDialog.dismiss();
                 if (task.isSuccessful()) {
                     startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                    finish();
+                    loginActivity.this.finish();
                 }
             }
         });

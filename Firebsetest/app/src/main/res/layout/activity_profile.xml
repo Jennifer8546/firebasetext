@@ -8,19 +8,26 @@
     tools:context="com.example.user.firebsetest.ProfileActivity">
 
 
-    <TextView
-        android:text="TextView"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewUserEmail"
-        android:textSize="30sp"
-        android:gravity="center"/>
+        android:layout_height="wrap_content">
 
-    <Button
-        android:text="登出"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonlogout" />
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewUserEmail"
+            android:textSize="30sp"
+            android:gravity="center"/>
+
+        <Button
+            android:text="登出"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonlogout" />
+
+    </LinearLayout>
 
 </LinearLayout>
