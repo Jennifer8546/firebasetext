@@ -3,6 +3,7 @@ package com.example.wennlab.database;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -21,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
         myFirebaseRef.child("message").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                System.out.println(snapshot.getValue());
-
+                //Android 沒有Println  要用 Log.d("Debug","");
+                //System.out.println(snapshot.getValue());
+                Log.d("Debug","snapshot:"+snapshot.getValue().toString());
             }
 
             @Override
