@@ -37,7 +37,7 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/emailaddress"
-            android:hint="輸入Email" />
+            android:hint="輸入信箱" />
 
 
         <EditText

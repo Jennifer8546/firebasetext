@@ -9,24 +9,39 @@
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:text="TextView"
+        <EditText
+            android:id="@+id/UserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewUserEmail"
-            android:textSize="30sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="輸入姓名"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/UserNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="輸入編號"
+            android:textSize="30sp" />
 
         <Button
-            android:text="登出"
-            android:layout_gravity="center"
+            android:id="@+id/buttonenter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonlogout" />
+            android:layout_gravity="center"
+            android:text="確定" />
+
+        <Button
+            android:id="@+id/buttonlogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="登出" />
 
     </LinearLayout>
 
