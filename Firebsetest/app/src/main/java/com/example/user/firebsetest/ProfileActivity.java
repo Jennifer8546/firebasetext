@@ -18,10 +18,10 @@ package com.example.user.firebsetest;
 
         private FirebaseAuth firebaseAuth;
 
-    private TextView UserEmail;
-    private Button buttonLogout;
-    private DatabaseReference databaseReference;
-    private EditText editTextUserName,editTextUserNumber;
+        private TextView UserEmail;
+        private Button buttonLogout;
+        private DatabaseReference databaseReference;
+        private EditText editTextUserName,editTextUserNumber;
     private Button buttonEnter;
 
 
