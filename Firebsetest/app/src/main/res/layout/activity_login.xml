@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/emailaddress"
+            android:id="@+id/etemail"
             android:hint="輸入信箱" />
 
 
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/password"
+            android:id="@+id/etpassword"
             android:hint="輸入密碼" />
 
 

@@ -13,24 +13,32 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/UserName"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
+            android:textSize="30sp"
             android:gravity="center"
-            android:text="輸入姓名"
-            android:textSize="30sp" />
+            android:id="@+id/tvUserEmail"
+            android:text="Large Text" />
 
         <EditText
-            android:id="@+id/UserNumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:id="@+id/etUserName"
+            android:hint="輸入姓名" />
+
+        <EditText
+            android:id="@+id/etUserposition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="輸入編號"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:hint="學生or老師" />
 
         <Button
-            android:id="@+id/buttonenter"
+            android:id="@+id/buttonsave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

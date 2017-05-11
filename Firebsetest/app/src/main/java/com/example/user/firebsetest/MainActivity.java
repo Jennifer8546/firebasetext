@@ -23,15 +23,15 @@ import com.google.firebase.auth.AuthResult;
 
 import org.w3c.dom.Text;
 
-    public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-        private Button button;
-        private EditText emailtext;
-        private EditText passwordtext;
-        private TextView login;
+    private Button button;
+    private EditText etemail;
+    private EditText etpassword;
+    private TextView login;
 
-        private ProgressDialog progressDialog;
-        private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +41,15 @@ import org.w3c.dom.Text;
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
             //profile activity here
-            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             finish();
         }
 
         progressDialog = new ProgressDialog(this);
         button = (Button) findViewById(R.id.signup);
-        emailtext = (EditText) findViewById(R.id.emailaddress);
-        passwordtext = (EditText) findViewById(R.id.password);
-        login=(TextView)findViewById(R.id.login);
+        etemail = (EditText) findViewById(R.id.etemail);
+        etpassword = (EditText) findViewById(R.id.etpassword);
+        login = (TextView) findViewById(R.id.login);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,7 @@ import org.w3c.dom.Text;
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this,"test",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this,loginActivity.class));
+                startActivity(new Intent(MainActivity.this, loginActivity.class));
                 //MainActivity.this.finish();
            /*     Intent intent =new Intent();
                 intent.setClass(MainActivity.this,loginActivity.class);
@@ -74,8 +74,8 @@ import org.w3c.dom.Text;
     }
 
     private void registerUser() {
-        String email = emailtext.getText().toString().trim();
-        String password = passwordtext.getText().toString().trim();
+        String email = etemail.getText().toString().trim();
+        String password = etpassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             //email是空的
@@ -90,19 +90,18 @@ import org.w3c.dom.Text;
         progressDialog.setMessage("註冊用戶中...");
         progressDialog.show();
 
-                        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                                .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                                            finish();
-                                        }
-                                        //Toast.makeText(MainActivity.this, "註冊成功!", Toast.LENGTH_SHORT).show();
-                                        else {
-                                            Toast.makeText(MainActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
-                                        }
-                                        progressDialog.dismiss();
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<com.google.firebase.auth.AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<com.google.firebase.auth.AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            finish();
+                            //Toast.makeText(MainActivity.this, "註冊成功!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "註冊失敗!請再試一次!!", Toast.LENGTH_SHORT).show();
+                        }
+                        //progressDialog.dismiss();
                     }
                 });
     }

@@ -1,16 +1,14 @@
 package com.example.user.firebsetest;
 
 /**
- * Created by WennLAB on 2017/4/25.
+ * Created by WennLAB on 2017/5/11.
  */
-
 public class UserInformation {
     public String name;
-    public String number;
+    public String position;
 
-
-    public UserInformation(String name,String number){
-        /*this.name;
-        this.number;*/
+    public UserInformation(String name, String position) {
+        this.name=name;
+        this.position=position;
     }
 }
